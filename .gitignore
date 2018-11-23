@@ -1,0 +1,9 @@
+##############################
+.idea/
+.project
+app/assets/images/_sprites.png
+app/assets/styles/_sprites.css
+node_modules/
+bower_components/
+dist/
+##############################
