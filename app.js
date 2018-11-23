@@ -1,4 +1,5 @@
 const Koa = require('koa')
+const sha1 = require('sha1')
 const app = new Koa()
 const views = require('koa-views')
 const json = require('koa-json')
@@ -6,11 +7,26 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 
+const config = require('./lib/config')
 const index = require('./routes/index')
 const users = require('./routes/users')
 
 // error handler
 onerror(app)
+
+// 微信认证
+app.use(async (ctx, next) => {
+  console.log(ctx.query)
+  const {signature, timestamp, nonce, echostr} = ctx.query
+  const token = config.wechat.token
+  let str = [token, timestamp, nonce].sort().join('')
+  const sha = sha1(str)
+  if (sha === signature) {
+    ctx.body = echostr
+  } else {
+    ctx.body = 'wrong'
+  }
+})
 
 // middlewares
 app.use(bodyparser({
