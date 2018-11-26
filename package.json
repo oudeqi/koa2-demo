@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "debug": "^2.6.3",
+    "ejs": "^2.6.1",
     "koa": "^2.2.0",
     "koa-bodyparser": "^3.2.0",
     "koa-convert": "^1.2.0",
@@ -21,7 +22,11 @@
     "koa-static": "^3.0.0",
     "koa-views": "^5.2.1",
     "pug": "^2.0.0-rc.1",
-    "sha1": "^1.1.1"
+    "raw-body": "^2.3.3",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "sha1": "^1.1.1",
+    "xml2js": "^0.4.19"
   },
   "devDependencies": {
     "nodemon": "^1.8.1"
