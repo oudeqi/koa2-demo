@@ -27,8 +27,7 @@ TokenSchema.pre('save', function (next) {
 })
 
 TokenSchema.statics = {
-
-  async getAccessToken() {
+  async getAccessToken () {
     const token = await this.findOne({
       name: 'access_token'
     })
@@ -53,8 +52,9 @@ TokenSchema.statics = {
       })
     }
     await token.save()
-    return data
+    return token
   }
 }
 
 const Token = mongoose.model('Token', TokenSchema)
+module.exports = Token

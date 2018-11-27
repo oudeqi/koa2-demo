@@ -7,9 +7,11 @@ const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 
 const config = require('./lib/config')
-const wechat = require('./lib/middleware')
+const wechatAuth = require('./middleware/wechat-auth')
+const { connect } = require('./middleware/connect')
 const index = require('./routes/index')
 const users = require('./routes/users')
+const wechat = require('./lib/wechat')
 
 // error handler
 onerror(app)
@@ -22,8 +24,18 @@ app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
 
+// 连接数据库
+app.use(connect(config.db))
+
+// wechat.getAccessToken().then((token) => {
+//   console.log('token-------------------')
+//   console.log(token)
+// }).catch(err => {
+//   console.log(err)
+// })
+
 // 微信认证
-app.use(wechat(config.wechat))
+app.use(wechatAuth(config.wechat))
 
 app.use(views(__dirname + '/views', {
   extension: 'pug'
