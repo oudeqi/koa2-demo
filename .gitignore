@@ -1,9 +1,11 @@
 ##############################
-.idea/
+
+.DS_Store
+.vscode
+.idea
 .project
-app/assets/images/_sprites.png
-app/assets/styles/_sprites.css
-node_modules/
-bower_components/
-dist/
+npm-debug.log
+node_modules
+bower_components
+
 ##############################
